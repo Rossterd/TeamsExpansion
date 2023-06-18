@@ -61,7 +61,7 @@ public class TeamsExpansion extends PlaceholderExpansion {
         if(scoreboard.getTeam(team) != null) {
             return scoreboard.getTeam(team).getColor();
         }else{
-            return ChatColor.WHITE;
+            return null;
         }
     }
 
@@ -81,6 +81,14 @@ public class TeamsExpansion extends PlaceholderExpansion {
         }
     }
 
+    private static int getTeamCount(String team) {
+        if(scoreboard.getTeam(team) != null) {
+            return scoreboard.getTeam(team).getSize();
+        }else{
+            return 0;
+        }
+    }
+
     public String onPlaceholderRequest(Player player, String identifier) {
         if(getPlayerTeam(player.getName()) == null) {
             return player.getName();
@@ -93,6 +101,8 @@ public class TeamsExpansion extends PlaceholderExpansion {
                 return getTeamSuffix(getPlayerTeam(player.getName())) + "";
             } else if(identifier.contains("name")) {
                 return getPlayerTeam(player.getName());
+            } else if(identifier.contains("count")) {
+                return getTeamCount(getPlayerTeam(player.getName())) + "";
             }
         }
         return null;
