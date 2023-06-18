@@ -7,7 +7,7 @@
     <groupId>uk.co.paulcodes</groupId>
     <artifactId>teamsexpansion</artifactId>
     <name>TeamsExpansion</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
