@@ -114,11 +114,13 @@ public class TeamsExpansion extends PlaceholderExpansion {
             if (identifier.contains("color")) {
                 return getTeamColor(getPlayerTeam(player.getName())) + "";
             } else if (identifier.contains("prefix")) {
-                return getTeamPrefix(getPlayerTeam(player.getName())) + "";
+                return getTeamPrefix(getPlayerTeam(player.getName()));
             } else if (identifier.contains("suffix")) {
-                return getTeamSuffix(getPlayerTeam(player.getName())) + "";
+                return getTeamSuffix(getPlayerTeam(player.getName()));
             } else if (identifier.contains("name")) {
                 return getPlayerTeam(player.getName());
+            } else if (identifier.contains("displayname")) {
+                return getDisplayName(getPlayerTeam(player.getName()));
             } else if (identifier.contains("count")) {
                 return getTeamCount(getPlayerTeam(player.getName())) + "";
             }
