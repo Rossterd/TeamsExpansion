@@ -46,62 +46,80 @@ public class TeamsExpansion extends PlaceholderExpansion {
         list.add(plc("prefix"));
         list.add(plc("suffix"));
         list.add(plc("name"));
+        list.add(plc("count"));
         return super.getPlaceholders();
     }
 
     private static String getPlayerTeam(String player) {
-        if(scoreboard.getEntryTeam(player) != null) {
+        if (scoreboard.getEntryTeam(player) != null) {
             return scoreboard.getEntryTeam(player).getName();
-        }else{
+        } else {
             return "";
         }
     }
 
     private static ChatColor getTeamColor(String team) {
-        if(scoreboard.getTeam(team) != null) {
+        if (scoreboard.getTeam(team) != null) {
             return scoreboard.getTeam(team).getColor();
-        }else{
+        } else {
             return null;
         }
     }
 
     private static String getTeamPrefix(String team) {
-        if(scoreboard.getTeam(team) != null) {
+        if (scoreboard.getTeam(team) != null) {
             return scoreboard.getTeam(team).getPrefix();
-        }else{
+        } else {
             return "";
         }
     }
 
     private static String getTeamSuffix(String team) {
-        if(scoreboard.getTeam(team) != null) {
+        if (scoreboard.getTeam(team) != null) {
             return scoreboard.getTeam(team).getSuffix();
-        }else{
+        } else {
+            return "";
+        }
+    }
+
+    private static String getDisplayName(String team) {
+        if (scoreboard.getTeam(team) != null) {
+            return scoreboard.getTeam(team).getDisplayName();
+        } else {
             return "";
         }
     }
 
     private static int getTeamCount(String team) {
-        if(scoreboard.getTeam(team) != null) {
+        if (scoreboard.getTeam(team) != null) {
             return scoreboard.getTeam(team).getSize();
-        }else{
+        } else {
             return 0;
         }
     }
 
     public String onPlaceholderRequest(Player player, String identifier) {
-        if(getPlayerTeam(player.getName()) == null) {
-            return player.getName();
-        }else {
-            if(identifier.contains("color")) {
+        if (getPlayerTeam(player.getName()).isEmpty()) {
+            if (identifier.contains("count") && identifier.contains("team")) {
+                String teamName = identifier.split("_")[2];
+                if (teamName.isEmpty()) {
+                    return "0";
+                } else {
+                    return getTeamCount(teamName) + "";
+                }
+            } else {
+                return player.getName();
+            }
+        } else {
+            if (identifier.contains("color")) {
                 return getTeamColor(getPlayerTeam(player.getName())) + "";
-            } else if(identifier.contains("prefix")) {
+            } else if (identifier.contains("prefix")) {
                 return getTeamPrefix(getPlayerTeam(player.getName())) + "";
-            } else if(identifier.contains("suffix")) {
+            } else if (identifier.contains("suffix")) {
                 return getTeamSuffix(getPlayerTeam(player.getName())) + "";
-            } else if(identifier.contains("name")) {
+            } else if (identifier.contains("name")) {
                 return getPlayerTeam(player.getName());
-            } else if(identifier.contains("count")) {
+            } else if (identifier.contains("count")) {
                 return getTeamCount(getPlayerTeam(player.getName())) + "";
             }
         }

@@ -12,7 +12,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.mainClass>uk.co.paulcodes.bigbrother.BigBrother</project.mainClass>
+        <project.mainClass>uk.co.paulcodes.teamsexpansion.TeamsExpansion</project.mainClass>
         <project.author>PaulCodesUK</project.author>
     </properties>
 
@@ -46,7 +46,7 @@
 
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
+            <artifactId>spigot-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
